@@ -49,3 +49,6 @@ class SpiderOpt(object):
 		pass
 	def test(self):
 		self.parser.print_help()
+		
+if __name__=='__main__':
+	SpiderOpt().run()
