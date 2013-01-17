@@ -79,5 +79,46 @@ def test():
 		print tp.resultQueue.get()
 	print 'end testing'
 
-if __name__ == '__main__':
-	test()
+def testA():
+	from urllib2 import Request, urlopen, URLError, HTTPError
+	import urllib2
+	req = urllib2.Request('http://www.pretend_server.org')
+	try: urllib2.urlopen(req)
+	except URLError, e:
+		print str(e.reason)+"\n"+str(e.code)
+
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+
+# Create table
+c.execute('''CREATE TABLE stocks
+             (date text, trans text, symbol text, qty real, price real)''')
+
+# Insert a row of data
+c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+
+# Save (commit) the changes
+conn.commit()
+
+# Never do this -- insecure!
+symbol = 'RHAT'
+c.execute("SELECT * FROM stocks WHERE symbol = '%s'" % symbol)
+
+# Do this instead
+t = ('RHAT',)
+c.execute('SELECT * FROM stocks WHERE symbol=?', t)
+
+# Larger example that inserts many records at a time
+purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
+             ('2006-04-05', 'BUY', 'MSFT', 1000, 72.00),
+             ('2006-04-06', 'SELL', 'IBM', 500, 53.00),
+            ]
+c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
+conn.commit()
+c.execute('SELECT * FROM stocks WHERE symbol=?', t)
+#print c.fetchone()
+#print c.fetchall()
+import pdb
+pdb.set_trace()
+
