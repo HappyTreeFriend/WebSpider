@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import re,Common,time
+import re,Common,time,os
 import httplib,urllib,urllib2,cookielib
 from BeautifulSoup import *
 from WorkerQ import *
@@ -50,7 +50,7 @@ class WebSpider(object):
 				#判断字符串格式
 				url = urljoin(now_url, url)
 			url_pack = self.get_scheme_netloc_path_(url)
-			path = re.compile(r'/+').sub('/', url_pack.path)
+			path = os.path.normpath(url_pack.path)
 			if path.__len__():
 				if path[-1] == '/':
 					path = path[:-1]
@@ -93,7 +93,7 @@ class WebSpider(object):
 
 	def get_urlDeep(self, url):
 		'''返回url深度'''
-		return self.get_scheme_netloc_path_(url).path.count('/')
+		return os.path.dirname(self.get_scheme_netloc_path_(url).path).split('/')[1:].__len__()
 	def save_page(self, dict_page):
 		print '''将页面的内容存入本地数据库'''
 	def re_url(self, now_url, **tag_attr):

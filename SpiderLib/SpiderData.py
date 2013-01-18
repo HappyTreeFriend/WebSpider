@@ -106,6 +106,58 @@ class SpiderData(object):
 		cur_file.executescript(str_sql)
 		self.__close__(conn_file)
 
+from Common import *
+from urlparse import urlparse
+import os
+class CTnode(object):
+	def __init__(self, child, data, brother):
+		'''只有子叶才有真正的页面
+		其他的节点都是存路径'''
+		self.child = child
+		self.data = data
+		self.brother = brother
+class CTBox(object):
+	def __init__(self, root_data):
+		self.root = CTnode(-1, root_data, -1)
+		self.list_node = list()
+		self.list_data = list()
+		self.list_data.append(comm.get_hash(root_data))
+	def get_scheme_netloc_path_(self, url):
+		return urlparse(url)
+	def get_file(url):
+		return os.path.basename(self.get_scheme_netloc_path_(url).path)
+	def split_data(self, url):
+		'''根据url分割出data'''
+		return self.get_scheme_netloc_path_(url).path.split('/')[1:]
+	def find_node(self, find_data, nodeid=0):
+		'''先序找到了数据，返回id'''
+		node = self.list_node[nodeid]
+		if node.data == find_data:
+			return nodeid
+		if node.child != -1:
+			self.find_node(find_data, node.child)
+		if node.brother != -1:
+			self.find_node(find_data, node.brother)
+	def add_node(self, data):
+		self.list_node.append(CTnode(-1, data, -1))
+		self.list_data.append(comm.get_hash(data))
+	def add_child(self, data, par):
+		'''加入数据到孩子节点'''
+		self.add_node(data)
+		par.child = self.list_node.__len__()-1
+	def add_brother(self, data, pre):
+		'''加入数据到兄弟节点'''
+		self.add_node(data)
+		pre.brother = self.list_node.__len__()-1
+	def add_data(self, data):
+		'''传入href'''
+		data = self.split_data(data)
+		for d in data:
+			if comm.get_hash(d) not in self.list_data:
+				#添加节点
+
+
+
 if __name__=='__main__':
 	db = SpiderData('test.db')
 	data = {'href':'http://www.baidu.com/1/2/3','url':'http://www.baidu.com/1/2/3','status':200, 'content':'<p>123</p>', 'msg':'OK', 'deep':3, 'key':'ALL', 'src_url': 'http://www.baidu.com', 'site':'www.baidu.com','child':0,'brother':0}

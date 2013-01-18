@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 #coding=utf-8
 import Queue,sys,time
+from Common import *
 class UrlQ(object):
 	def __init__(self):
 		self.urlQ = Queue.Queue(0)
 		self.visit = list()
 	def del_re(self, data):
 		'''检查重复的url'''
-		return data in self.visit
+		return comm.get_hash(data) in self.visit
 	def putQ(self, data):
 		if not self.del_re(data):
 			self.urlQ.put(data)
-			self.visit.append(data)
+			self.visit.append(comm.get_hash(data))
 	def getQ(self):
 		return self.urlQ.get()
 	def wait_empty(self):
@@ -75,10 +76,10 @@ class ThreadPool(object):
 
 if __name__=='__main__':
 	testQ = UrlQ()
-	testQ.putQ(1)
+	testQ.putQ('1')
 	print testQ.getQ()
-	testQ.putQ(1)
-	testQ.putQ(0)
+	testQ.putQ('1')
+	testQ.putQ('0')
 	import pdb
 	pdb.set_trace()
 	print testQ.qsize()
