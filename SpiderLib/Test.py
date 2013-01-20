@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8  
-  
+
 import os   
 class dir(object):   
     def __init__(self):   
         self.SPACE = ""   
         self.list = []  
-      
+
     def getCount(self, url):  
         files = os.listdir(url)  
         count = 0;  
@@ -41,7 +41,25 @@ class dir(object):
         f.writelines(self.list)   
         print "ok"   
         f.close()   
-if __name__ == '__main__':   
-    d = dir()   
-    d.getDirList("/home/natsuki/www") # input directory  
-    d.writeList("/home/natsuki/www/1.txt") # write to file 
+#if __name__ == '__main__':   
+    #d = dir()   
+    #d.getDirList("/home/natsuki/www") # input directory  
+    #d.writeList("/home/natsuki/www/1.txt") # write to file 
+
+import sys
+import time
+
+# Output example: [=======   ] 75%
+# width defines bar width
+# percent defines current percentage
+
+def progress(width, percent):
+    print "%s %d%%\r" % (('%%-%ds' % width) % (width * percent / 100 * '='), percent),
+    if percent >= 100:
+        print
+        sys.stdout.flush()
+
+# Simulate doing something ...
+for i in xrange(100):
+    progress(50, (i + 1))
+    time.sleep(0.1) # Slow it down for demo

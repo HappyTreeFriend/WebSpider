@@ -1,0 +1,19 @@
+BEGIN TRANSACTION;
+CREATE TABLE sqlite_sequence(name,seq);
+INSERT INTO sqlite_sequence VALUES('www.baidu.com',1);
+CREATE TABLE 'www.baidu.com' (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        site TEXT,
+        src_url TEXT,
+        href TEXT,
+        url TEXT,
+        deep INTEGER,
+        status INTEGER,
+        msg TEXT,
+        key TEXT,
+        content TEXT,
+        child INTEGER DEFAULT -1,
+        brother INTEGER DEFAULT -1
+        );
+INSERT INTO 'www.baidu.com' VALUES(1,'www.baidu.com','http://www.baidu.com','http://www.baidu.com/1/2/3','http://www.baidu.com/1/2/3',3,200,'OK','ALL','<p>123</p>',-1,-1);
+COMMIT;

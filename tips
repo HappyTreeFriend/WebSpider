@@ -1,0 +1,59 @@
+打印错误信息 格式化
+抛出异常
+
+import sys
+
+try:
+    f = open('myfile.txt')
+    s = f.readline()
+    i = int(s.strip())
+except IOError as (errno, strerror):
+    print "I/O error({0}): {1}".format(errno, strerror)
+except ValueError:
+    print "Could not convert data to an integer."
+except:
+    print "Unexpected error:", sys.exc_info()[0]
+    raise
+
+只捕获open的信息 不要把代码都防到try里
+for arg in sys.argv[1:]:
+    try:
+        f = open(arg, 'r')
+    except IOError:
+        print 'cannot open', arg
+    else:
+        print arg, 'has', len(f.readlines()), 'lines'
+        f.close()
+
+自定义抛出异常
+>>> try:
+...    raise Exception('spam', 'eggs')
+... except Exception as inst:
+...    print type(inst)     # the exception instance
+...    print inst.args      # arguments stored in .args
+...    print inst           # __str__ allows args to printed directly
+...    x, y = inst          # __getitem__ allows args to be unpacked directly
+...    print 'x =', x
+...    print 'y =', y
+
+
+
+定义清理行为
+
+try 语句还有另一个可选的子句，目的在于定义在任何情况下都一定要执行的功能。例如
+
+>>> try:
+...     raise KeyboardInterrupt
+... finally:
+...     print 'Goodbye, world!'
+...
+Goodbye, world!
+KeyboardInterrupt
+
+
+
+with open("myfile.txt") as f:
+    for line in f:
+        print line
+
+语句执行后，文件 f 总会被关闭，即使是在处理文件中的数据时出错也一样。 其它对象是否提供了预定义的清理行为要查看它们的文档。
