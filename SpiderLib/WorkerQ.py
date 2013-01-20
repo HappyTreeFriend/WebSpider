@@ -25,7 +25,7 @@ class UrlQ(object):
 import threading
 #替我们工作的线程池中的线程
 class MyThread(threading.Thread):
-	def __init__(self, workQueue, resultQueue,timeout=5, **kwargs):
+	def __init__(self, workQueue, resultQueue,timeout=3, **kwargs):
 		threading.Thread.__init__(self, kwargs=kwargs)
 		#线程在结束前等待任务队列多长时间
 		self.timeout = timeout
@@ -40,16 +40,16 @@ class MyThread(threading.Thread):
 				#从工作队列中获取一个任务
 				callable, args, kwargs = self.workQueue.get(timeout=self.timeout)
 				#我们要执行的任务
-				res = callable(args, kwargs)
-				if res:
-					#把任务返回的结果放在结果队列中
-					self.resultQueue.put(res+" | "+self.getName())    
+				try:
+					res = callable(args, kwargs)
+					if res:
+						#把任务返回的结果放在结果队列中
+						self.resultQueue.put(res+" | "+self.getName())    
+				except:
+					pass
 			except Queue.Empty: #任务队列空的时候结束此线程
 				break
-			except :
-				print sys.exc_info()
-				raise
-
+				
 class ThreadPool(object):
 	def __init__(self, num_of_threads=3):
 		self.workeQueue = Queue.Queue()

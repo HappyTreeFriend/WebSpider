@@ -45,9 +45,16 @@ def test():
     i+=1
 
 if __name__ == '__main__':
-    i = 1
-    test()
-    try:
-        for example in examples: example()
-    except KeyboardInterrupt:
-        sys.stdout('\nQuitting examples.\n')
+    #i = 1
+ #   test()
+  #  try:
+   #     for example in examples: example()
+    #except KeyboardInterrupt:
+     #   sys.stdout('\nQuitting examples.\n')
+	import urllib2
+	req = urllib2.Request('http://www.pretend_server.org') 
+	import pdb
+	pdb.set_trace()
+	try: urllib2.urlopen(req) 
+	except URLError, e: 
+		print e.reason 

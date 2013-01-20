@@ -1,20 +1,27 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import re,Common,time,os
+import re,Common,time,os,math
 import httplib,urllib,urllib2,cookielib
+from urllib2 import URLError
 from BeautifulSoup import *
 from WorkerQ import *
 from SpiderData import *
 from urlparse import urljoin, urlparse, urlunparse, ParseResult
 USER_AGENT = "WebSpider.py"
+
+#需要爬取的类型
+types = ['','js','css','html','xml','xhtml','htm','php','py','asp','aspx','jsp','txt','xsl','dtd','xslt']
+
 class WebSpider(object):
 	'''网络爬虫功能模块
 	'''
-	def __init__(self, url, deep):
+	def __init__(self, url, deep, dbfile):
 		self.cj = cookielib.CookieJar()
 		urllib2.install_opener(urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj)))
-
+		self.db = SpiderData(dbfile)
+		self.ctbox = CTBox(os.path.splitext(dbfile)[0]+'_tr.db')
+		
 		self.deep = deep
 		#检查用户输入的url，并加入访问队列
 		self.website = self.get_subsite(self.get_scheme_netloc_path_(url).netloc)
@@ -22,25 +29,33 @@ class WebSpider(object):
 		self.urlq = UrlQ()
 		self.push_url(self.url)
 		#self.get_page()
-		self.myJob()
-
-	def myJob(self):
+		self.myWork()
+	
+	def myJob(self,th_q):
+		'''一个工作线程'''
+		for i in range(th_q):
+			self.get_page()
+	def myWork(self):
+		thread_size = 5
 		while True:
 			qsize = self.urlq.qsize()
-			tp = ThreadPool(5)
+			print '队列是否为空',qsize
+			if not qsize:	break
+			tp = ThreadPool(thread_size)
 			print '创建5个线程池'
-			for i in range(qsize):
-				time.sleep(0.5)
-				print '线程池',i
-				tp.add_job(self.get_page)
+			th_q = int(math.ceil(qsize / float(thread_size)))	#一个线程分配多少个url
+			for t in range(thread_size):	#线程分发
+				tp.add_job(self.myJob(th_q))
+				th_q = int(math.ceil(self.urlq.qsize() / float(thread_size)))	#一个线程分配多少个url
 			tp.wait_for_complete()
 			print '线程池回收'
 			#判断url队列的大小是否为0，等待30秒
 			time.sleep(3)
-			print '队列是否为空',self.urlq.is_empty(),self.urlq.qsize()
-			if self.urlq.is_empty():
-				break
+		self.end_work()
 		
+	def end_work(self):
+		self.db.end_data()
+		self.ctbox.dbTree.end_data()
 	def check_url(self, now_url, url):
 		'''检查url格式
 		去除路径中多余的/;
@@ -50,14 +65,16 @@ class WebSpider(object):
 				#判断字符串格式
 				url = urljoin(now_url, url)
 			url_pack = self.get_scheme_netloc_path_(url)
-			path = os.path.normpath(url_pack.path)
+			path = re.compile(r'/+').sub('/', url_pack.path)
 			if path.__len__():
 				if path[-1] == '/':
 					path = path[:-1]
 			url = urlunparse(ParseResult(scheme=url_pack.scheme, netloc=url_pack.netloc, path=path, params=url_pack.params, query=url_pack.query, fragment=url_pack.fragment))
+			if self.get_urlDeep(url) > self.deep:
+				raise '%s url深度过大' % (url)
+			return url
 		except ValueError:
 			#一些url地址"#"
-			print ValueError
 			return False
 
 	def get_subsite(self, url):
@@ -78,11 +95,12 @@ class WebSpider(object):
 	def get_scheme_netloc_path_(self, url):
 		'''返回协议类型，站点，路径'''
 		return urlparse(url)
-
-
 	def push_url(self, url):
 		if url:
-			self.urlq.putQ(url)
+			page_type = os.path.basename(self.get_scheme_netloc_path_(url).path).split('.').pop()
+			#print page_type
+			if page_type in types:
+				self.urlq.putQ(url)
 	def pop_url(self):
 		#print '''从队列中取出url'''
 		tmp = self.urlq.getQ()
@@ -93,9 +111,11 @@ class WebSpider(object):
 
 	def get_urlDeep(self, url):
 		'''返回url深度'''
-		return os.path.dirname(self.get_scheme_netloc_path_(url).path).split('/')[1:].__len__()
-	def save_page(self, dict_page):
-		print '''将页面的内容存入本地数据库'''
+		return self.get_scheme_netloc_path_(url).path.count('/')
+	def save_page(self, **dict_page):
+		'''将页面的内容存入本地数据库'''
+		self.db.add_data(self.ctbox, **dict_page)
+		#time.sleep(1)
 	def re_url(self, now_url, **tag_attr):
 		attr = tag_attr['attr']
 		for u in tag_attr['tag']:
@@ -135,9 +155,11 @@ class WebSpider(object):
 		key = self.find_key(content)
 		if key:
 			#将页面的内容存入本地数据库
+			#mimetype = req.info().getheaders('Content-Type')[0].split(';')[0]
 			self.save_url(content, now_url)
 			if deep <= self.deep:
-				self.save_page({'href':now_url,'url':visit_url,'status':status, 'content':content, 'msg':msg, 'deep':deep, 'key':key, 'src_url': self.url, 'site':self.get_scheme_netloc_path_(now_url).netloc})
+				tmp_data = {'href':now_url,'url':visit_url,'status':status, 'content':comm.content2db(content), 'msg':msg, 'deep':deep, 'key':key, 'src_url': self.url, 'site':self.get_scheme_netloc_path_(now_url).netloc}
+				self.save_page(**tmp_data)
 	def after_status(self, **obj):
 		'''根据状态码，调用不同的处理方式'''
 		statusFunc={
@@ -146,10 +168,13 @@ class WebSpider(object):
 				301:self.redL_page(),#永久重定向
 				302:self.redS_page(),#临时重定向
 				}
-		statusFunc[obj['status']]
+		try:
+			statusFunc[obj['status']]
+		except:
+			pass
 	def find_key(self, content):
 		print '''分析页面关键字'''
 		return 'GOOD'
 
 if __name__=='__main__':
-	WebSpider('http://www.baidu.com', 1)
+	WebSpider('https://www.owasp.org', 1, 'www.db')

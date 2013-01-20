@@ -1,3 +1,4 @@
+import base64
 class Common(object):
     def test(self):
         pass
@@ -11,5 +12,9 @@ class Common(object):
         return str1.replace('.', '_')
     def db2site(self, str2):
         return str1.replace('_', '.')
+    def content2db(self, content):
+    	return base64.encodestring(content)
+    def db2content(self, content):
+    	return base64.decodestring(content)
 
 comm = Common()
