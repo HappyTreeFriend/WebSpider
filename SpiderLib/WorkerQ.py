@@ -2,6 +2,18 @@
 #coding=utf-8
 import Queue,sys,time
 from Common import *
+import urllib,re
+replace_list = [
+			('%3A',':'),
+			('%3F','?'),
+			('%26','&'),
+			('%40','@'),
+			('%3D','='),
+			('%2B','+'),
+			('%27','\''),
+			('%20',' '),
+			('%23','#')
+		]
 class UrlQ(object):
 	def __init__(self):
 		self.urlQ = Queue.Queue(0)
@@ -9,7 +21,13 @@ class UrlQ(object):
 	def del_re(self, data):
 		'''检查重复的url'''
 		return comm.get_hash(data) in self.visit
+	def url_encode(self, data):
+		data = urllib.quote(data.encode('utf-8'))
+		for src,dest in replace_list:
+			data = re.sub(src,dest,data)
+		return data
 	def putQ(self, data):
+		data = self.url_encode(data)
 		if not self.del_re(data):
 			self.urlQ.put(data)
 			self.visit.append(comm.get_hash(data))

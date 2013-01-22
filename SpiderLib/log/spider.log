@@ -1,0 +1,199 @@
+[INFO] 2013-01-22 07:53:51,639 url:http://www.jslndq.com/ProductShow.asp?ID=537 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:51,943 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:51,943 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:53:51,943 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:51,944 1父节点
+[DEBUG] 2013-01-22 07:53:51,944 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:53:51,944 21父节点
+[DEBUG] 2013-01-22 07:53:51,944 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=538 url深度1
+[INFO] 2013-01-22 07:53:52,593 url:http://www.jslndq.com/ProductShow.asp?ID=538 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:52,897 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:52,898 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:53:52,898 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:52,898 1父节点
+[DEBUG] 2013-01-22 07:53:52,898 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:53:52,898 21父节点
+[DEBUG] 2013-01-22 07:53:52,899 线程id=3,分配1个url
+[DEBUG] 2013-01-22 07:53:53,900 从队列中取出urlhttp://www.jslndq.com/products.asp?BigClassName=&SmallClassName=&page=8 url深度1
+[INFO] 2013-01-22 07:53:54,510 url:http://www.jslndq.com/products.asp?BigClassName=&SmallClassName=&page=8 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:54,916 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:54,917 分割url ['www.jslndq.com', 'products.asp']
+[DEBUG] 2013-01-22 07:53:54,917 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:54,917 1父节点
+[DEBUG] 2013-01-22 07:53:54,917 加入路径1products.asp
+[DEBUG] 2013-01-22 07:53:54,917 12父节点
+[DEBUG] 2013-01-22 07:53:54,918 线程id=4,分配2个url
+[DEBUG] 2013-01-22 07:53:55,919 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=512 url深度1
+[INFO] 2013-01-22 07:53:56,560 url:http://www.jslndq.com/ProductShow.asp?ID=512 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:56,878 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:56,878 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:53:56,879 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:56,879 1父节点
+[DEBUG] 2013-01-22 07:53:56,879 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:53:56,880 21父节点
+[DEBUG] 2013-01-22 07:53:56,880 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=513 url深度1
+[INFO] 2013-01-22 07:53:57,504 url:http://www.jslndq.com/ProductShow.asp?ID=513 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:57,808 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:57,809 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:53:57,809 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:57,809 1父节点
+[DEBUG] 2013-01-22 07:53:57,810 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:53:57,810 21父节点
+[DEBUG] 2013-01-22 07:53:57,810 线程id=5,分配2个url
+[DEBUG] 2013-01-22 07:53:58,811 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=514 url深度1
+[INFO] 2013-01-22 07:53:59,441 url:http://www.jslndq.com/ProductShow.asp?ID=514 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:53:59,751 页面数据加入数据库
+[DEBUG] 2013-01-22 07:53:59,752 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:53:59,752 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:53:59,752 1父节点
+[DEBUG] 2013-01-22 07:53:59,752 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:53:59,752 21父节点
+[DEBUG] 2013-01-22 07:53:59,753 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=515 url深度1
+[INFO] 2013-01-22 07:54:00,390 url:http://www.jslndq.com/ProductShow.asp?ID=515 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:00,707 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:00,707 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:00,708 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:00,708 1父节点
+[DEBUG] 2013-01-22 07:54:00,708 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:00,708 21父节点
+[DEBUG] 2013-01-22 07:54:00,708 线程id=6,分配2个url
+[DEBUG] 2013-01-22 07:54:01,709 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=516 url深度1
+[INFO] 2013-01-22 07:54:02,327 url:http://www.jslndq.com/ProductShow.asp?ID=516 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:02,629 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:02,630 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:02,630 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:02,630 1父节点
+[DEBUG] 2013-01-22 07:54:02,630 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:02,630 21父节点
+[DEBUG] 2013-01-22 07:54:02,631 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=517 url深度1
+[INFO] 2013-01-22 07:54:03,252 url:http://www.jslndq.com/ProductShow.asp?ID=517 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:03,561 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:03,562 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:03,562 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:03,562 1父节点
+[DEBUG] 2013-01-22 07:54:03,562 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:03,562 21父节点
+[DEBUG] 2013-01-22 07:54:03,563 线程id=7,分配2个url
+[DEBUG] 2013-01-22 07:54:04,564 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=518 url深度1
+[INFO] 2013-01-22 07:54:05,207 url:http://www.jslndq.com/ProductShow.asp?ID=518 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:05,531 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:05,532 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:05,532 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:05,532 1父节点
+[DEBUG] 2013-01-22 07:54:05,532 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:05,532 21父节点
+[DEBUG] 2013-01-22 07:54:05,532 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=519 url深度1
+[INFO] 2013-01-22 07:54:06,173 url:http://www.jslndq.com/ProductShow.asp?ID=519 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:06,475 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:06,476 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:06,476 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:06,476 1父节点
+[DEBUG] 2013-01-22 07:54:06,476 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:06,476 21父节点
+[DEBUG] 2013-01-22 07:54:06,476 线程id=8,分配1个url
+[DEBUG] 2013-01-22 07:54:07,478 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=520 url深度1
+[INFO] 2013-01-22 07:54:08,143 url:http://www.jslndq.com/ProductShow.asp?ID=520 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:08,447 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:08,448 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:08,448 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:08,448 1父节点
+[DEBUG] 2013-01-22 07:54:08,449 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:08,449 21父节点
+[DEBUG] 2013-01-22 07:54:08,449 线程id=9,分配1个url
+[DEBUG] 2013-01-22 07:54:09,449 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=521 url深度1
+[INFO] 2013-01-22 07:54:10,084 url:http://www.jslndq.com/ProductShow.asp?ID=521 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:10,400 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:10,401 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:10,401 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:10,401 1父节点
+[DEBUG] 2013-01-22 07:54:10,401 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:10,402 21父节点
+[DEBUG] 2013-01-22 07:54:13,404 线程池回收
+[DEBUG] 2013-01-22 07:54:16,407 url队列大小8
+[DEBUG] 2013-01-22 07:54:16,414 创建10个线程池
+[DEBUG] 2013-01-22 07:54:16,415 线程id=0,分配1个url
+[DEBUG] 2013-01-22 07:54:17,417 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=522 url深度1
+[INFO] 2013-01-22 07:54:18,050 url:http://www.jslndq.com/ProductShow.asp?ID=522 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:18,395 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:18,396 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:18,396 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:18,396 1父节点
+[DEBUG] 2013-01-22 07:54:18,397 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:18,397 21父节点
+[DEBUG] 2013-01-22 07:54:18,397 线程id=1,分配1个url
+[DEBUG] 2013-01-22 07:54:19,398 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=523 url深度1
+[INFO] 2013-01-22 07:54:20,031 url:http://www.jslndq.com/ProductShow.asp?ID=523 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:20,338 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:20,338 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:20,339 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:20,339 1父节点
+[DEBUG] 2013-01-22 07:54:20,339 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:20,339 21父节点
+[DEBUG] 2013-01-22 07:54:20,339 线程id=2,分配1个url
+[DEBUG] 2013-01-22 07:54:21,340 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=524 url深度1
+[INFO] 2013-01-22 07:54:22,019 url:http://www.jslndq.com/ProductShow.asp?ID=524 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:22,323 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:22,324 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:22,324 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:22,324 1父节点
+[DEBUG] 2013-01-22 07:54:22,324 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:22,325 21父节点
+[DEBUG] 2013-01-22 07:54:22,325 线程id=3,分配1个url
+[DEBUG] 2013-01-22 07:54:23,325 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=525 url深度1
+[INFO] 2013-01-22 07:54:23,939 url:http://www.jslndq.com/ProductShow.asp?ID=525 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:24,250 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:24,251 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:24,251 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:24,251 1父节点
+[DEBUG] 2013-01-22 07:54:24,251 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:24,251 21父节点
+[DEBUG] 2013-01-22 07:54:24,251 线程id=4,分配1个url
+[DEBUG] 2013-01-22 07:54:25,252 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=526 url深度1
+[INFO] 2013-01-22 07:54:25,881 url:http://www.jslndq.com/ProductShow.asp?ID=526 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:26,179 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:26,180 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:26,180 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:26,180 1父节点
+[DEBUG] 2013-01-22 07:54:26,181 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:26,181 21父节点
+[DEBUG] 2013-01-22 07:54:26,181 线程id=5,分配1个url
+[DEBUG] 2013-01-22 07:54:27,182 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=527 url深度1
+[INFO] 2013-01-22 07:54:27,815 url:http://www.jslndq.com/ProductShow.asp?ID=527 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:28,127 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:28,127 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:28,127 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:28,128 1父节点
+[DEBUG] 2013-01-22 07:54:28,128 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:28,128 21父节点
+[DEBUG] 2013-01-22 07:54:28,128 线程id=6,分配1个url
+[DEBUG] 2013-01-22 07:54:29,129 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=528 url深度1
+[INFO] 2013-01-22 07:54:29,764 url:http://www.jslndq.com/ProductShow.asp?ID=528 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:30,067 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:30,067 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:30,067 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:30,068 1父节点
+[DEBUG] 2013-01-22 07:54:30,068 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:30,068 21父节点
+[DEBUG] 2013-01-22 07:54:30,068 线程id=7,分配1个url
+[DEBUG] 2013-01-22 07:54:31,069 从队列中取出urlhttp://www.jslndq.com/ProductShow.asp?ID=529 url深度1
+[INFO] 2013-01-22 07:54:31,707 url:http://www.jslndq.com/ProductShow.asp?ID=529 deep:1 code:200 msg:OK
+[INFO] 2013-01-22 07:54:32,012 页面数据加入数据库
+[DEBUG] 2013-01-22 07:54:32,013 分割url ['www.jslndq.com', 'ProductShow.asp']
+[DEBUG] 2013-01-22 07:54:32,013 加入路径0www.jslndq.com
+[DEBUG] 2013-01-22 07:54:32,013 1父节点
+[DEBUG] 2013-01-22 07:54:32,013 加入路径1ProductShow.asp
+[DEBUG] 2013-01-22 07:54:32,014 21父节点
+[DEBUG] 2013-01-22 07:54:32,014 线程id=8,分配0个url
+[DEBUG] 2013-01-22 07:54:33,015 线程id=9,分配0个url
+[DEBUG] 2013-01-22 07:54:37,031 线程池回收
+[DEBUG] 2013-01-22 07:54:40,035 url队列大小0
+[INFO] 2013-01-22 07:54:40,035 将内存中的数据保存到本地数据库中
+[INFO] 2013-01-22 07:54:40,037 将内存中的数据保存到本地数据库中
+[INFO] 2013-01-22 07:54:40,191 页面抓取结束
+[INFO] 2013-01-22 07:54:40,192 正在将数据库中数据转换到本地目录下
+[INFO] 2013-01-22 07:54:40,193 完成转换：/home/natsuki/BAE/github/WebSpider/SpiderLib/local/db/www_jslndq_com
+[INFO] 2013-01-22 07:54:40,193 正在生成目录树...
+[DEBUG] 2013-01-22 07:54:40,195 [{'path': u'www.jslndq.com', 'row_id': 1}]
+[DEBUG] 2013-01-22 07:54:40,199 [{'path': u'css', 'row_id': 2}, {'path': u'Menu_content.htm', 'row_id': 5}, {'path': u'index.asp', 'row_id': 9}, {'path': u'contact.asp', 'row_id': 10}, {'path': u'about.asp', 'row_id': 11}, {'path': u'products.asp', 'row_id': 12}, {'path': u'honour.asp', 'row_id': 13}, {'path': u'services_ly.asp', 'row_id': 14}, {'path': u'job.asp', 'row_id': 15}, {'path': u'network.asp', 'row_id': 16}, {'path': u'newshow.asp', 'row_id': 17}, {'path': u'productshow.asp', 'row_id': 18}, {'path': u'style.css', 'row_id': 19}, {'path': u'Products.asp', 'row_id': 20}, {'path': u'ProductShow.asp', 'row_id': 21}]
+[DEBUG] 2013-01-22 07:54:40,200 [{'path': u'Menu_func.js', 'row_id': 3}, {'path': u'Menu_init.js', 'row_id': 4}, {'path': u'csss.css', 'row_id': 6}, {'path': u'home.css', 'row_id': 7}, {'path': u'mt_style.css', 'row_id': 8}]
+[INFO] 2013-01-22 07:54:40,202 完成目录树，保存至tmp/tmp.tr文件中

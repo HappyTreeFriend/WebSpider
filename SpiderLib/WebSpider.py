@@ -2,25 +2,28 @@
 #coding=utf-8
 
 import re,Common,time,os,math
-import httplib,urllib,urllib2,cookielib
-from urllib2 import URLError
+import httplib,urllib2,cookielib
+from urllib2 import URLError,HTTPError
 from BeautifulSoup import *
 from WorkerQ import *
 from SpiderData import *
 from urlparse import urljoin, urlparse, urlunparse, ParseResult
+import SpiderLog as log
+
 USER_AGENT = "WebSpider.py"
 
 #需要爬取的类型
 types = ['','js','css','html','xml','xhtml','htm','php','py','asp','aspx','jsp','txt','xsl','dtd','xslt']
-
 class WebSpider(object):
 	'''网络爬虫功能模块
 	'''
-	def __init__(self, url, deep, dbfile):
+	def __init__(self, url, deep, dbfile, thread_size):
 		self.cj = cookielib.CookieJar()
 		urllib2.install_opener(urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj)))
 		self.db = SpiderData(dbfile)
 		self.ctbox = CTBox(os.path.splitext(dbfile)[0]+'_tr.db')
+		self.dbfile = dbfile
+		self.thread_size = thread_size
 		
 		self.deep = deep
 		#检查用户输入的url，并加入访问队列
@@ -30,32 +33,36 @@ class WebSpider(object):
 		self.push_url(self.url)
 		#self.get_page()
 		self.myWork()
-	
+		self.end_work()
 	def myJob(self,th_q):
 		'''一个工作线程'''
 		for i in range(th_q):
 			self.get_page()
 	def myWork(self):
-		thread_size = 5
+		log.pbar.start()
+		thread_size = self.thread_size
+		log.add_log(log.g_logger.info('创建%s个线程池'%thread_size))
 		while True:
 			qsize = self.urlq.qsize()
-			print '队列是否为空',qsize
+			log.add_log(log.g_logger.debug('url队列大小'+str(qsize)))
 			if not qsize:	break
 			tp = ThreadPool(thread_size)
-			print '创建5个线程池'
+			log.add_log(log.g_logger.debug('创建%s个线程池' % thread_size))
 			th_q = int(math.ceil(qsize / float(thread_size)))	#一个线程分配多少个url
 			for t in range(thread_size):	#线程分发
+				log.add_log(log.g_logger.debug('线程id=%s,分配%s个url'%(t,th_q)))
+				time.sleep(1)
 				tp.add_job(self.myJob(th_q))
 				th_q = int(math.ceil(self.urlq.qsize() / float(thread_size)))	#一个线程分配多少个url
 			tp.wait_for_complete()
-			print '线程池回收'
-			#判断url队列的大小是否为0，等待30秒
+			log.add_log(log.g_logger.debug('线程池回收'))
+			#判断url队列的大小是否为0，等待3秒
 			time.sleep(3)
-		self.end_work()
 		
 	def end_work(self):
 		self.db.end_data()
 		self.ctbox.dbTree.end_data()
+		log.add_log(log.g_logger.info('页面抓取结束'))
 	def check_url(self, now_url, url):
 		'''检查url格式
 		去除路径中多余的/;
@@ -106,7 +113,7 @@ class WebSpider(object):
 		tmp = self.urlq.getQ()
 		#import pdb
 		#pdb.set_trace()
-		print '''从队列中取出url''',tmp,self.get_urlDeep(tmp)
+		log.add_log(log.g_logger.debug('从队列中取出url'+str(tmp)+' url深度'+str(self.get_urlDeep(tmp))))
 		return tmp
 
 	def get_urlDeep(self, url):
@@ -147,16 +154,19 @@ class WebSpider(object):
 			visit_url = req.geturl()
 			status = req.getcode()
 			msg = req.msg
-		except URLError, e:
+		except HTTPError,e:
 			visit_url = now_url
+			content = ''
+			deep = self.get_urlDeep(now_url)
 			status = e.code
 			msg = e.reason
-			self.after_status(status=status)
+		log.add_log(log.g_logger.info('url:%s deep:%d code:%d msg:%s' % (now_url,deep,status,msg))) 
 		key = self.find_key(content)
 		if key:
 			#将页面的内容存入本地数据库
 			#mimetype = req.info().getheaders('Content-Type')[0].split(';')[0]
-			self.save_url(content, now_url)
+			if self.after_status(status=status):
+				self.save_url(content, now_url)
 			if deep <= self.deep:
 				tmp_data = {'href':now_url,'url':visit_url,'status':status, 'content':comm.content2db(content), 'msg':msg, 'deep':deep, 'key':key, 'src_url': self.url, 'site':self.get_scheme_netloc_path_(now_url).netloc}
 				self.save_page(**tmp_data)
@@ -167,14 +177,18 @@ class WebSpider(object):
 				300:None,#丢弃
 				301:self.redL_page(),#永久重定向
 				302:self.redS_page(),#临时重定向
+				404:False,
 				}
 		try:
-			statusFunc[obj['status']]
+			ret = statusFunc[obj['status']]
+			return ret
 		except:
-			pass
+			return True
 	def find_key(self, content):
 		print '''分析页面关键字'''
 		return 'GOOD'
 
 if __name__=='__main__':
-	WebSpider('https://www.owasp.org', 1, 'www.db')
+	WebSpider('http://www.jslndq.com/', 1, 'www.db')
+	test_local()
+	dir().show_tree('www.db')

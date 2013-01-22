@@ -33,7 +33,6 @@ def example4():
     pbar = ProgressBar(widgets=widgets, maxval=500)
     pbar.start()
     for i in range(100,500+1,50):
-        time.sleep(3)
         pbar.update(i)
     pbar.finish()
 
@@ -45,16 +44,9 @@ def test():
     i+=1
 
 if __name__ == '__main__':
-    #i = 1
- #   test()
-  #  try:
-   #     for example in examples: example()
-    #except KeyboardInterrupt:
-     #   sys.stdout('\nQuitting examples.\n')
-	import urllib2
-	req = urllib2.Request('http://www.pretend_server.org') 
-	import pdb
-	pdb.set_trace()
-	try: urllib2.urlopen(req) 
-	except URLError, e: 
-		print e.reason 
+	i = 1
+	test()
+	try:
+		for example in examples: example()
+	except KeyboardInterrupt:
+		sys.stdout('\nQuitting examples.\n')
