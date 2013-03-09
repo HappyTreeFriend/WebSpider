@@ -34,15 +34,18 @@ class SpiderOpt(object):
 		self.parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0', help='程序版本信息')
 		
 	def run(self):
-		self.args=self.parser.parse_args()
-		#print self.args
-		#self.check()
-		if self.args.testself():
-			self.set_log(self.args.logfile, self.args.loglevel)
-			WebSpider(self.args.url, self.args.deep, self.args.dbfile, self.args.thread)
-			test_local(self.args.dbfile)
-			dir().show_tree(self.args.dbfile)
-			log.pbar.finish()
+		try:
+			self.args=self.parser.parse_args()
+			#print self.args
+			#self.check()
+			if self.args.testself():
+				self.set_log(self.args.logfile, self.args.loglevel)
+				WebSpider(self.args.url, self.args.deep, self.args.dbfile, self.args.thread)
+				test_local(self.args.dbfile)
+				dir().show_tree(self.args.dbfile)
+				log.pbar.finish()
+		except:
+			self.error('选项值格式错误')
 		
 	def check(self):
 		'''检查选项值格式'''
