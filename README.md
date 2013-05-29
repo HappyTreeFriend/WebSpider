@@ -24,3 +24,69 @@ class SpiderOpt(object):
     def check(self):
         '''检查选项值格式'''
         ……</code></pre>
+        
+###爬虫功能
+页面处理：获取分析下载页面信息，以宽度优先遍历获取url，对于返回的http状态码，进行相应的处理；
+<pre><code>def get_page(self, *args, **kwargs):
+    	'''下载页面'''
+		now_url = self.pop_url()
+		try:
+			req = urllib2.urlopen(now_url)
+			content = req.read()
+			……
+			#将页面的内容存入本地数据库
+			#mimetype = req.info().getheaders('Content-Type')[0].split(';')[0]
+			self.save_url(content, now_url)
+			……
+				self.save_page(**tmp_data)
+
+	def after_status(self, **obj):
+		'''根据状态码，调用不同的处理方式'''
+		statusFunc={
+				202:self.wait_page(),#阻塞等待
+				300:None,#丢弃
+				301:self.redL_page(),#永久重定向
+				302:self.redS_page(),#临时重定向
+		……
+
+	def find_key(self, content):
+		print '''分析页面关键字'''</code></pre>
+
+url处理：url符合需求的存入url队列，从url队列中取出url访问进行页面分析。
+<pre><code>def check_url(self, now_url, url):
+    	'''检查url格式
+		去除路径中多余的/;
+'''
+		try:
+			if not re.match(r'https?://\w+(?:\.\w+)+', url):
+				#判断字符串格式
+				url = urljoin(now_url, url)
+			url_pack = self.get_scheme_netloc_path_(url)
+			path = re.compile(r'/+').sub('/', url_pack.path)
+			……
+			url = urlunparse(ParseResult(scheme=url_pack.scheme, netloc=url_pack.netloc, path=path, params=url_pack.params, query=url_pack.query, fragment=url_pack.fragment))
+			……
+	def check_site(self,url):
+		'''检查url是否同一站点，是则返回True'''
+		……</code></pre>
+        
+        线程分配：指定的线程数生成相应大小的线程池，放入线程池队列中；根据实时获取的url队列大小，将上述任务分配给多线程去执行。
+        <pre><code>
+        def myJob(self,th_q):
+    	'''一个工作线程'''
+		……
+	def myWork(self):
+		while True:
+			……
+			th_q = int(math.ceil(qsize / float(thread_size)))	#一个线程分配多少个url
+			for t in range(thread_size):	#线程分发
+				tp.add_job(self.myJob(th_q))
+				th_q = int(math.ceil(self.urlq.qsize() / float(thread_size)))	#一个线程分配多少个url
+			tp.wait_for_complete()
+			print '线程池回收'
+			#判断url队列的大小是否为0，等待30秒
+			time.sleep(3)
+		self.end_work()
+        </code></pre>
+        
+###工作队列
