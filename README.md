@@ -8,4 +8,5 @@ WebSpider
 利用python的客户端库模拟浏览器访问url，并分析url的域名，深度等信息；正则表达式模块分析页面信息；多线程模块提高抓取效率；数据库操作模块保存页面数据；日志模块分等级保存和显示日志信息；本地文件操作模块保存页面数据。
 
 ##模块设计
-![alter模块设计图](http://a.hiphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=f067ab880df3d7ca08f63f73c224cf34/730e0cf3d7ca7bcb62032b99bf096b63f624a808.jpg?referer=d83b130664380cd7bf0997dd0806&x=.jpg)
+<img src="1.jpg" heigh="100px" width="50px" />
+
